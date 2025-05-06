@@ -7,15 +7,38 @@ public class trabajoGrupo_1 {
         float promedio = sumaNotas/3;
         return promedio;
     }
+
+    //metodo para validar que solo se pueda ingresar valores enteros y no flotantes
+    public static int validarEntero(Scanner scanner){
+        int cantidadEstudiante = 0;
+        boolean esEntero = false;
+
+        while(!esEntero){
+            System.out.print("ingresa el numero de estudiantes que quieres registrar: ");
+            if(scanner.hasNextByte()){
+                cantidadEstudiante = scanner.nextByte();
+                esEntero = true;
+            }else{
+                System.out.println("NOOOOOOOOOOOO, DATO DECIMALLLLL");
+                scanner.next();//limpiar buffer del scanner
+            }
+        }
+        return cantidadEstudiante;
+    }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         byte cantidadNotas = 3;
         //para confirmar el numero de estudiantes a registrar
-        System.out.print("ingresa el numero de estudiantes que quieres registrar: ");
-        byte cantidadEstudiante = scanner.nextByte();
+        int cantidadEstudiante = validarEntero(scanner);
         // array de estudiantes
         String[] arrayEstudiantes = new String[cantidadEstudiante];
+
+        //
+        double limiteAprobacion = 3.0;
+        //array estados
+        String[] arrayEstados = new String[cantidadEstudiante];
+
         // array de identificaciones
         int[] arrayId = new int[cantidadEstudiante];
         //array de promedios
@@ -52,13 +75,19 @@ public class trabajoGrupo_1 {
                         float promedio = promedioNotas(sumaNotas);
                         arrayPromedio[aumento] = promedio;
                     }
+                    //
+                    if (arrayPromedio[aumento] >= limiteAprobacion) {
+                        arrayEstados[aumento] = "Aprobado";
+                    } else {
+                        arrayEstados[aumento] = "Reprobado";
+                    }
                 }
                 
                 System.out.println("el nombre del estudiante es: " + arrayEstudiantes[aumento] + " y su identificacion es: " + arrayId[aumento]);
                 System.out.println("--------------------------");
                 System.out.println("el promedio del estudiante es => " + arrayPromedio[aumento]);
                 System.out.println("-------------------------");
-
+                System.out.println("el estudiante está => " + arrayEstados[aumento]);
                 System.out.println("-------------------------");
                 System.out.println("cantidad parcial de estudiantes ingresados: " + (aumento + 1));
                 System.out.println("--------------------------");
@@ -67,7 +96,7 @@ public class trabajoGrupo_1 {
             System.out.println("este sistema es para revisar los arrays ");
             System.out.println("que quieres hacer? ");
             System.out.println("---------------------------");
-            System.out.println("1 => ver reporte de estudiantes aprobados");
+            System.out.println("1 => buscar reporte de estudiante");
             System.out.println("2 => ver lista de estudiantes registrados");
             System.out.println("3 => ver lista de promedios");
             System.out.println("4 => salir del sistema");
