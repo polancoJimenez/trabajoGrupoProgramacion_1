@@ -103,7 +103,14 @@ public class trabajoGrupo_1 {
             byte opcion = scanner.nextByte();
             switch (opcion) {
                 case 1:
-                    
+                    System.out.print("posicion de estudiantes ");
+                    for(byte contador = 1; contador <= cantidadEstudiante; contador++){
+                        System.out.print("---" + contador );
+                    }
+                    System.out.println(" ");
+                    System.out.println("Estudiante " + Arrays.toString(arrayEstudiantes));
+                    byte numEstudiante = scanner.nextByte();
+                    System.out.println("Estudiante => " + arrayEstudiantes[numEstudiante-1] + "/ id => "+ arrayId[numEstudiante-1] + "/ Estado => " + arrayEstados[numEstudiante-1] + "/ promedio => " + arrayPromedio[numEstudiante-1]);
                     break;
                 case 2:
                     System.out.println("la cantidad de estudiantes regitrados son => " + arrayEstudiantes.length);
